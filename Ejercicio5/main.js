@@ -9,11 +9,20 @@ function ordenamientoBurbuja(collection) {
   for (let i = 0; i < collection.length - 1; i++) {
     for (let j = 0; j < collection[i].length - 1; j++) {
       let tmp = undefined;
+      let tmp2 = undefined;
 
-      if (collection[i][j] > collection[i][j + 1]) {
-        tmp = collection[j];
-        collection[j] = collection[j + 1];
-        collection[j + 1] = tmp;
+      if (
+        collection[i][j] > collection[i + 1][j] ||
+        collection[i][j + 1] > collection[i + 1][j + 1]
+      ) {
+        tmp = collection[i][j];
+        collection[i][j] = collection[i + 1][j];
+        collection[i + 1][j] = tmp;
+
+        tmp2 = collection[i][j + 1];
+        collection[i][ j + 1 ] = collection[i + 1][j + 1];
+        collection[i+1][j+1] = tmp2;
+
       }
     }
   }
@@ -27,4 +36,6 @@ function imprimirCoordenadas(coordenadas) {
   }
 }
 
+ordenamientoBurbuja(coordenadas);
 
+imprimirCoordenadas(coordenadas);
